@@ -1,62 +1,87 @@
 module A1 where
-
-import Data.Char (toUpper)
+import Data.Char
+import Prelude
+import GHC.Generics (S)
 
 -- *** Assignment 1-1 *** --
 
 -- Q#01
-
-_SIZE_ = undefined
+_SIZE_ :: Int
+_SIZE_ = 3
 
 -- Q#02
-
-_DISPLAY_LOGO_ = undefined
+_DISPLAY_LOGO_ :: Bool
+_DISPLAY_LOGO_ = True
 
 -- Q#03
-
-convertRowIndex = undefined
+cRow :: Char -> Int
+cRow c = fromEnum (toUpper c) - 65
 
 -- Q#04
-
-_INVALID_MOVE_ = undefined
+_INVALID_MOVE_ :: (Int, Int)
+_INVALID_MOVE_ = (-1, -1)
 
 -- Q#05
-
-_SEP_ = undefined
+_SEP_ :: [Char]
+_SEP_ = ['_','|','_']
 
 -- *** Assignment 1-2 *** --
 
 -- Q#06
-data Square
+data Square = X | O | E deriving (Show, Eq)
 
 
 -- Q#07
-data GameState
+data GameState = Playing | Tie | XWins | OWins deriving (Show, Eq)
+ 
 
 
 -- Q#08
 
 
+type Player = Square
+type Row    = [Square]
+type Line   = [Square]
+type Board  = [Row]
+type Move   = (Int, Int)
 
+_Player1 :: Player
+_Player1 = X
 
+_Row :: Row
+_Row = [X, O, E]
 
+_Line :: Line
+_Line = [X, O, E]
 
 -- Q#09
-
-getFirstPlayer = undefined
-
-
-getFirstPlayer_ = undefined
+getFirstPlayer :: Bool -> Player
+getFirstPlayer p
+  | p = X
+  | otherwise = O
 
 -- Q#10
-
-showGameState gs = undefined
+showGameState :: GameState -> String
+-- showGameState gs 
+--  | gs == Tie     = "Tie Game" 
+--  | otherwise     = "Game currently in progress"
+showGameState gs = case gs of
+ XWins   -> "XWins"
+ OWins   -> "OWins"
+ Tie     -> "TieGame"
+ Playing -> "Playing"
 
 -- Q#11
-
-switchPlayer = undefined
+switchPlayer :: Player -> Player
+switchPlayer p = case p of
+ X -> O
+ O -> X
+ E -> E
 
 
 -- Q#12
-
-showSquare = undefined
+showSquare :: Square -> String
+showSquare s = case s of
+ X -> "X"
+ O -> "O"
+ E -> "_"

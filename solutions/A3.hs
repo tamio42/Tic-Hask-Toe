@@ -4,15 +4,17 @@ import A1
 import A2
 
 import Data.List (transpose)
+import Numeric (showInt)
 
 -- *** Assignment 3-1 ***
 
 -- Q#01
+showInts :: [Int] -> [String]
+showInts []     = []
+showInts (x:xs) = [show x] ++ showInts xs
 
-showInts = undefined
-
-
-_HEADER_ = undefined
+_HEADER_ :: Int -> [Int]
+_HEADER_ = map (read :: String -> Int) . map (:[]) . show
 
 -- Q#02
 

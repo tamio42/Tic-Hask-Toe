@@ -5,6 +5,7 @@ import A2
 import A3
 import A4
 import A5
+import Control.Concurrent (yield)
 
 main :: IO ()
 main = putStrLn "Welcome to Part I of EMURGO Academy's Haskell course!"
