@@ -48,6 +48,8 @@ _TIED_BOARD_ = [
       , [O, X, O]
       ]
 
+tieb :: Board
+tieb = _TIED_BOARD_
 -- Q#06
 indexRowStrings :: [String] -> [(Char,String)]
 indexRowStrings s = zip ['A'..] s
@@ -104,6 +106,9 @@ ooo = [O,O,O]
 
 eee :: Row
 eee = [E,E,E]
+
+xoe :: Row
+xoe = [X,O,E]
 
 t1 :: Row -> Row
 t1 r = take 1 r
