@@ -58,7 +58,7 @@ gal b = [head b, head (tail b), last b, head c, head (tail c), last c, getDiag1 
  where c = transpose b
 
 -- _TIED_BOARD_ = [
---         [EE, O, O]
+--         [E, O, O]
 --       , [O, E, X]
 --       , [O, X, E]
 --       ]
