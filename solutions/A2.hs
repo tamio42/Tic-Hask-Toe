@@ -43,13 +43,17 @@ isTied b =  b /= _EMPTY_BOARD_
 
 _TIED_BOARD_ :: Board
 _TIED_BOARD_ = [
-        [X, O, O]
-      , [O, X, X]
-      , [O, X, O]
+        [E, O, O]
+      , [O, E, X]
+      , [O, X, E]
       ]
 
-tieb :: Board
-tieb = _TIED_BOARD_
+tb :: Board
+tb = _TIED_BOARD_
+
+eb :: Board
+eb = _EMPTY_BOARD_
+
 -- Q#06
 indexRowStrings :: [String] -> [(Char,String)]
 indexRowStrings s = zip ['A'..] s

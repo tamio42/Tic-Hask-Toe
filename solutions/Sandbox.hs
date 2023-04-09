@@ -1,4 +1,7 @@
 module Sandbox where
+import A1
+import A2
+import A3
 
 
 rev :: String -> String
@@ -44,13 +47,6 @@ m = foldr (\a b -> if vowel a then b + 1 else b) b "fsdazvxcoiweir"
 length7 :: String -> Bool
 length7 s = length s == 7
 
--- factors :: Int -> [Int]
--- factors n = loop [1..n]
---   loop []         = []
---   loop (x:xs)
---    | mod n x == 0 = x : loop xs
---    | otherwise    = loop xs
-
 includes :: Eq a => a -> [a] -> Bool
 includes a []     = False
 includes a (x:xs)
@@ -64,3 +60,6 @@ includes a (x:xs)
 pangram :: String -> Bool
 pangram [] = False
 pangram s = all (`elem` s) ['a'..'z']
+
+ints :: [[Int]]
+ints = [[1,2,3],[4,5,6],[7,8,9]]

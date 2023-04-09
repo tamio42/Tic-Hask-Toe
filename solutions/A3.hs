@@ -5,6 +5,7 @@ import A2
 
 import Data.List (transpose)
 import Numeric (showInt)
+-- import Sandbox (b)
 
 -- *** Assignment 3-1 ***
 
@@ -34,18 +35,14 @@ isColEmpty r c
  | c == 2 && last eee == E       = True
  | otherwise                     = False
 
-
--- | null r                        = False
--- | c < 0 || c > 2                = False
-
 -- Q#05
 dropFirstCol :: Board -> Board
 dropFirstCol []     = []
 dropFirstCol (b:bs) = tail b : dropFirstCol bs
 
 dropLastCol :: Board -> Board
-dropLastCol []      = []
-dropLastCol (b:bs) = take 2 b : dropLastCol bs
+dropLastCol []     = []
+dropLastCol (b:bs) = init b : dropLastCol bs
 
 -- Q#06
 getDiag1 :: Board -> Line
@@ -56,13 +53,14 @@ getDiag2 :: Board -> Line
 getDiag2 [] = []
 getDiag2 (b:bs) = last b : getDiag2 (dropLastCol bs)
 
-
-getAllLines = undefined
+gal :: Board -> [Row]
+gal b = [head b, head (tail b), last b, head c, head (tail c), last c, getDiag1 b, getDiag2 b]
+ where c = transpose b
 
 -- _TIED_BOARD_ = [
---         [X, O, O]
---       , [O, X, X]
---       , [O, X, O]
+--         [E, O, O]
+--       , [O, E, X]
+--       , [O, X, E]
 --       ]
 
 -- *** Assignment 3-2 ***
