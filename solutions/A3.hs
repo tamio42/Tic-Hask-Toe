@@ -54,7 +54,9 @@ getDiag2 [] = []
 getDiag2 (b:bs) = last b : getDiag2 (dropLastCol bs)
 
 gal :: Board -> [Row]
-gal b = [head b, head (tail b), last b, head c, head (tail c), last c, getDiag1 b, getDiag2 b]
+gal b = [head b, head (tail b), last b, 
+         head c, head (tail c), last c, 
+         getDiag1 b, getDiag2 b]
  where c = transpose b
 
 -- _TIED_BOARD_ = [
@@ -66,8 +68,24 @@ gal b = [head b, head (tail b), last b, head c, head (tail c), last c, getDiag1 
 -- *** Assignment 3-2 ***
 
 -- Q#07
+putSquare :: Player -> Board -> Move -> Board
+putSquare _ [] _ = []
+putSquare p b m
+ | r == 0 = [replaceSquareInRow p1 c (head b), head (tail b), last b]
+ | r == 1 = [head (tail b), replaceSquareInRow p1 c (head b), last b]
+ | r == 2 = [head (tail b), last b, replaceSquareInRow p1 c (head b)]
+ | otherwise = []
+ where 
+  r = fst m
+  c = snd m
+  p1 = p
 
-putSquare = undefined
+-- putSquare :: Board -> Board
+-- putSquare b = 
+--  let b1 = head b
+--      b2 = head (tail b)
+--      b3 = last b
+--  in [b1,b2,b3]
 
 -- Q#08
 

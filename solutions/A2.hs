@@ -35,7 +35,7 @@ _EMPTY_ROW_ :: Row
 _EMPTY_ROW_ = replicate _SIZE_ E
 
 _EMPTY_BOARD_ :: Board
-_EMPTY_BOARD_ = [_EMPTY_ROW_, _EMPTY_ROW_, _EMPTY_ROW_]
+_EMPTY_BOARD_ = replicate _SIZE_ _EMPTY_ROW_
 
 -- Q#05
 isTied :: Board -> Bool
