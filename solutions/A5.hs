@@ -14,6 +14,9 @@ import Control.Monad (when)
 printBoard :: Board -> IO (String)
 printBoard = undefined
 
+t42 :: String
+t42 = "wakka wakka"
+
 -- Q#02
 _LOGO_PATH_ :: FilePath
 _LOGO_PATH_ = "./assets/logo.txt"

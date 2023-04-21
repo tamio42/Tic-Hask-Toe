@@ -7,7 +7,6 @@ import Data.List (transpose)
 import Numeric (showInt)
 import Text.Read (Lexeme(String, Char))
 import Foreign (toBool)
-import Sandbox (b)
 import GHC.Arr (accum)
 -- import Sandbox (b)
 
