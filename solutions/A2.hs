@@ -5,8 +5,7 @@ module A2 where
 import A1
 import Data.List (intercalate)
 import Text.Read (readMaybe)
-import Data.Char (digitToInt)
-import Data.Char (toUpper)
+import Data.Char (digitToInt, toUpper)
 
 -- *** Assignment 2-1 *** --
 
@@ -19,12 +18,12 @@ _RANGE_ :: [Int]
 _RANGE_ = [0..(_SIZE_ - 1)]
 
 -- Q#03
-isDigit :: Char -> Bool
-isDigit c = c `elem` ['0'..'9']
+isDigit1 :: Char -> Bool
+isDigit1 c = c `elem` ['0'..'9']
 
 readDigit :: Char -> Int
 readDigit c
- | isDigit c        = digitToInt c
+ | isDigit1 c        = digitToInt c
  | toUpper c == 'A' = 0
  | toUpper c == 'B' = 1
  | toUpper c == 'C' = 2
@@ -39,13 +38,13 @@ _EMPTY_BOARD_ = replicate _SIZE_ _EMPTY_ROW_
 
 -- Q#05
 isTied :: Board -> Bool
-isTied b =  b /= _EMPTY_BOARD_
+isTied b = E `notElem` concat b
 
 _TIED_BOARD_ :: Board
 _TIED_BOARD_ = [
-        [E, O, O]
-      , [O, E, X]
-      , [O, X, E]
+        [X, O, O]
+      , [O, X, X]
+      , [O, X, O]
       ]
 
 tb :: Board
@@ -67,8 +66,8 @@ formatLine s = intercalate _SEP_ s
 -- Q#08
 isMoveInBounds :: Move -> Bool
 isMoveInBounds (a, b)
- | a < 0 || a > length _RANGE_ -1 = False
- | b < 0 || b > length _RANGE_ -1 = False
+ | a < 0 || a > _SIZE_ -1 = False
+ | b < 0 || b > _SIZE_ -1 = False
  | otherwise = True
 
 -- Q#09
@@ -119,6 +118,3 @@ t1 r = take 1 r
 
 t2 :: Row -> Row
 t2 r = take 2 r
-
-rats :: String -> String
-rats (x:xs) = reverse xs ++ [x]

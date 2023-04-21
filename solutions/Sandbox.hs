@@ -1,7 +1,9 @@
 module Sandbox where
 import A1
 import A2
-import A3
+-- import A3
+import Text.Read (Lexeme(String))
+import Data.List
 
 
 rev :: String -> String
@@ -63,3 +65,50 @@ pangram s = all (`elem` s) ['a'..'z']
 
 ints :: [[Int]]
 ints = [[1,2,3],[4,5,6],[7,8,9]]
+
+-- elem' :: Eq a => a -> [a] -> Bool
+-- elem' a [] = False
+-- elem a (x)
+
+-- elem' a xs = foldr (\x b -> if a == x then True else b) False xs
+-- [(a,Int)]
+myL :: [String] -> Int
+myL xs = go xs where
+ go :: [String] -> Int
+ go [] = 0
+ go (x:xs) = 1 + go xs
+
+myR :: String -> String
+myR s = go [] s where
+ go :: String -> String -> String
+ go acc [] = acc
+ go acc (x:xs) = go (x : acc) xs
+
+
+getInt :: IO Int
+getInt = getLine >>= \s -> return ((read s) :: Int)
+
+-- main =
+--  getLine >>= \a -> 
+--  getLine >>= \b -> 
+--  getLine >>= \c ->  
+--  putStrLn (a ++ b ++ c)
+ -- putStrLn (show (a ++ b ++ c))
+
+-- main =
+--  getLine >>= \a -> 
+--  getLine >>= \b -> 
+--  getLine >>= \c ->  
+ 
+--  putStrLn (a ++ b ++ c)
+
+printElements :: [String] -> IO ()
+printElements [] = return ()
+printElements (x:xs) = do putStrLn x
+                          printElements xs
+                          
+names :: [String]
+names = ["a","b","c"]
+
+main :: IO [()]
+main = sequence (map putStrLn names)

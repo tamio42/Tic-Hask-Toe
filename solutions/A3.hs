@@ -5,6 +5,10 @@ import A2
 
 import Data.List (transpose)
 import Numeric (showInt)
+import Text.Read (Lexeme(String, Char))
+import Foreign (toBool)
+import Sandbox (b)
+import GHC.Arr (accum)
 -- import Sandbox (b)
 
 -- *** Assignment 3-1 ***
@@ -32,7 +36,7 @@ isColEmpty :: Row -> Int -> Bool
 isColEmpty r c
  | c == 0 && head r == E         = True
  | c == 1 && head (tail r) == E  = True
- | c == 2 && last eee == E       = True
+ | c == 2 && last r == E         = True
  | otherwise                     = False
 
 -- Q#05
@@ -53,8 +57,8 @@ getDiag2 :: Board -> Line
 getDiag2 [] = []
 getDiag2 (b:bs) = last b : getDiag2 (dropLastCol bs)
 
-gal :: Board -> [Row]
-gal b = [head b, head (tail b), last b, 
+getAllLines :: Board -> [Row]
+getAllLines b = [head b, head (tail b), last b, 
          head c, head (tail c), last c, 
          getDiag1 b, getDiag2 b]
  where c = transpose b
@@ -68,33 +72,46 @@ gal b = [head b, head (tail b), last b,
 -- *** Assignment 3-2 ***
 
 -- Q#07
-putSquare :: Player -> Board -> Move -> Board
-putSquare _ [] _ = []
-putSquare p b m
- | r == 0 = [replaceSquareInRow p1 c (head b), head (tail b), last b]
- | r == 1 = [head (tail b), replaceSquareInRow p1 c (head b), last b]
- | r == 2 = [head (tail b), last b, replaceSquareInRow p1 c (head b)]
- | otherwise = []
- where 
-  r = fst m
-  c = snd m
-  p1 = p
 
--- putSquare :: Board -> Board
--- putSquare b = 
---  let b1 = head b
---      b2 = head (tail b)
---      b3 = last b
---  in [b1,b2,b3]
+putSquare :: Player -> Board -> Move -> Board
+putSquare pl b (row, col) = replaceElem row b $ replaceElem col (b !! row) pl
+  where
+    replaceElem :: Int -> [a] -> a -> [a]
+    -- Replace item at element `index` with `new` inside the list `olds`
+    replaceElem _ [] _ = []
+    replaceElem index olds new = let (l, r) = splitAt index olds in l ++ (new : tail r)
+
+-- putSquare :: Player -> Board -> Move -> Board
+-- putSquare _ [] _ = []
+-- putSquare p b m
+--  | r == 0 = [replaceSquareInRow p1 c (head b), head (tail b), last b]
+--  | r == 1 = [head (tail b), replaceSquareInRow p1 c (head b), last b]
+--  | r == 2 = [head (tail b), last b, replaceSquareInRow p1 c (head b)]
+--  | otherwise = []
+--  where 
+--   r = fst m
+--   c = snd m
+--   p1 = p
 
 -- Q#08
+prependRowIndicesWorker :: [(Char,String)] -> [String]
+prependRowIndicesWorker [] = []
+prependRowIndicesWorker ((c,s) : xs) = (c : s) : prependRowIndicesWorker xs
 
-prependRowIndices = undefined
+prependRowIndices :: [String] -> [String]
+prependRowIndices = prependRowIndicesWorker . indexRowStrings
 
 -- Q#09
-
-isWinningLine = undefined
+isWinningLine :: Player -> Line -> Bool
+isWinningLine p l = go False l where
+  go :: Bool -> Line -> Bool
+  go acc [] = acc
+  go acc (x:xs) = (x == p) && go True xs 
 
 -- Q#10
-
-isValidMove = undefined
+isValidMove :: Board -> Move -> Bool
+isValidMove [] _ = False
+isValidMove b m  = isMoveInBounds m && isColEmpty r c
+ where
+    r = b !! fst m
+    c = snd m

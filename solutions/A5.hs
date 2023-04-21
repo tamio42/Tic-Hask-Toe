@@ -11,7 +11,7 @@ import Control.Monad (when)
 -- *** Assignment 5-1 *** --
 
 -- Q#01
-
+printBoard :: Board -> IO (String)
 printBoard = undefined
 
 -- Q#02

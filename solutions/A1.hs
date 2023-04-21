@@ -32,7 +32,7 @@ data Square = X | O | E deriving (Show, Eq)
 
 
 -- Q#07
-data GameState = Playing | Tie | XWins | OWins deriving (Show, Eq)
+data GameState = Playing | Tie | XWins | OWins | InvalidMove deriving (Show, Eq)
  
 
 
@@ -62,14 +62,12 @@ getFirstPlayer p
 
 -- Q#10
 showGameState :: GameState -> String
--- showGameState gs 
---  | gs == Tie     = "Tie Game" 
---  | otherwise     = "Game currently in progress"
 showGameState gs = case gs of
- XWins   -> "XWins"
- OWins   -> "OWins"
- Tie     -> "TieGame"
- Playing -> "Playing"
+ XWins       -> "XWins"
+ OWins       -> "OWins"
+ Tie         -> "TieGame"
+ Playing     -> "Playing"
+ InvalidMove -> "Invalid Move"
 
 -- Q#11
 switchPlayer :: Player -> Player
