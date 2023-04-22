@@ -70,15 +70,15 @@ wbx = [[X, O, O],
 
 wbo :: Board
 wbo = [ [O, X, O]
-              , [X, X, O]
-              , [X, O, O]
-              ]
+      , [X, X, O]
+      , [X, O, O]
+      ]
 
 pb :: Board
 pb = [ [E, X, O]
-              , [X, E, O]
-              , [X, O, E]
-              ]              
+     , [X, E, O]
+     , [X, O, E]
+      ]              
 
 -- Q#09
 getGameState :: Board -> GameState
@@ -107,4 +107,4 @@ prependRowIndices s  = zipWith (:) ['A'..] s
 
 -- Q#11
 formatBoard :: Board -> String
-formatBoard b =   intercalate "\n" $ "  _|_0_|_1_|_2_|_" : prependRowIndices (formatRows tb)
+formatBoard b =   intercalate "\n" $ "  _|_0_|_1_|_2_|_" : prependRowIndices (formatRows b)

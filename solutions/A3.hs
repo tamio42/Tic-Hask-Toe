@@ -23,7 +23,7 @@ _HEADER_ r = formatLine $ [" "] ++ map show r ++ [" "]
 -- Q#02
 showSquares :: [Square] -> [String]
 showSquares []     = []
-showSquares (x:xs) = show x : showSquares xs
+showSquares (x:xs) = showSquare x : showSquares xs
 
 -- Q#03
 formatRows :: [Row] -> [String]
@@ -76,7 +76,6 @@ putSquare :: Player -> Board -> Move -> Board
 putSquare pl b (row, col) = replaceElem row b $ replaceElem col (b !! row) pl
   where
     replaceElem :: Int -> [a] -> a -> [a]
-    -- Replace item at element `index` with `new` inside the list `olds`
     replaceElem _ [] _ = []
     replaceElem index olds new = let (l, r) = splitAt index olds in l ++ (new : tail r)
 
