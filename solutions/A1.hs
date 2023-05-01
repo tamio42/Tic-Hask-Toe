@@ -83,3 +83,9 @@ showSquare s = case s of
  X -> "X"
  O -> "O"
  E -> "_"
+
+winner :: Player -> String
+winner p = show p ++ " WINS THE GAME! \n"
+
+tieGame :: String
+tieGame = "TIE GAME! \n"

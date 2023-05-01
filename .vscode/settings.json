@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Solarized Light",
   "editor.fontSize": 16,
   "workbench.iconTheme": "vscode-icons",
   "haskell.plugin.ghcide-type-lenses.globalOn": false,
@@ -8,4 +8,7 @@
   "gitpod.openInStable.neverPrompt": true,
   "redhat.telemetry.enabled": true,
   "vsicons.dontShowNewVersionMessage": true,
+  "workbench.preferredDarkColorTheme": "Solarized Light",
+  "workbench.preferredHighContrastColorTheme": "Solarized Light",
+  "window.autoDetectColorScheme": true,
 }

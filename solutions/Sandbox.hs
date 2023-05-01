@@ -2,8 +2,10 @@ module Sandbox where
 import A1
 import A2
 -- import A3
-import Text.Read (Lexeme(String))
+-- import A3
+import Text.Read (Lexeme(String), get)
 import Data.List
+import Text.ParserCombinators.ReadP (char)
 
 
 rev :: String -> String
@@ -13,26 +15,66 @@ rev (x:xs) = rev xs ++ [x]
 type Name = String
 type Id = Int
 type Power = String
-data Pokemon = MkPokemon Name Id [Power]
+data Pokemon = MkPokemon{ getName :: Name
+                         ,getId :: Id
+                         ,getPowers :: [Power]
+                        }
+
+-- instance Show Pokemon where
+--     show p = unwords [ getName p ++ "\n"
+--                      ," NO. " ++ show (getId p) ++ "\n"
+--                      ]
+
+instance Show Pokemon where
+    show p = "yellow \n"  ++ "red"
+
 pokemon = [ " ","bulbasaur", "squirtle", "charmander"," "]
+
+
+pList = [bulbasaur, ivysaur, venusaur, 
+         squirtle, charmander, charizard, pikachu]
+
+baobamon :: Pokemon
+baobamon = MkPokemon { getName = "Babobamon"
+                      ,getId = 69
+                      ,getPowers = ["Cook", "Grow Plants"]
+                      }
 
 bulbasaur :: Pokemon
 bulbasaur = MkPokemon "Bulbasaur" 1 ["Grass", "Poison"]
+
+ivysaur :: Pokemon
+ivysaur = MkPokemon "Ivysaur" 1 ["Grass", "Poison"]
+
+venusaur :: Pokemon
+venusaur = MkPokemon "Venusaur" 1 ["Grass", "Poison"]
 
 squirtle :: Pokemon
 squirtle = MkPokemon "Squirtle" 7 ["Water"]
 
 charmander :: Pokemon
 charmander = MkPokemon "Charmander" 4 ["Fire"]
- 
+
+charizard :: Pokemon
+charizard = MkPokemon "Charizard" 4 ["Fire", "Flying"]
+
+pikachu :: Pokemon
+pikachu = MkPokemon "Pikachu" 4 ["Fire"]
+
+-- getPowers :: [Pokemon] -> [Power]
+-- getPowers p = foldr (\_ _ p -> p:[]) p
 
 getNames :: [Pokemon] -> [Name]
 getNames [] = []
 getNames ((MkPokemon n _ _) : ps) = n : getNames ps
 
-getId :: [Pokemon] -> [Int]
-getId [] = []
-getId ((MkPokemon _ i _) : xs) = i : getId xs
+-- getPowers :: [Pokemon] -> [Power]
+-- getPowers [] = []
+-- getPowers ((MkPokemon _ _ p) : ps) =  concat p : getPowers ps
+
+-- getId :: [Pokemon] -> [Int]
+-- getId [] = []
+-- getId ((MkPokemon _ i _) : xs) = i : getId xs
 
 vowel :: Char -> Bool
 vowel c = c `elem` "AEIOUaeiou"
@@ -86,7 +128,7 @@ myR s = go [] s where
 
 
 getInt :: IO Int
-getInt = getLine >>= \s -> return ((read s) :: Int)
+getInt = getLine >>= \s -> return (read s :: Int)
 
 -- main =
 --  getLine >>= \a -> 
@@ -107,8 +149,12 @@ printElements [] = return ()
 printElements (x:xs) = do putStrLn x
                           printElements xs
                           
-names :: [String]
-names = ["a","b","c"]
+names :: String
+names  = "dfkj \n kjdsfkjas \n jklafsda"
 
-main :: IO [()]
-main = sequence (map putStrLn names)
+-- getPowers' = nub . concatMap stringList
+
+addOneList' lst = map addOne' lst
+    where addOne' x = x + 1
+
+-- addOneList lst = map (\x -> x + 1) lst
