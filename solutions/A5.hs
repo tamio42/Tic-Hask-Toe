@@ -13,13 +13,13 @@ import Data.Bool (bool)
 
 -- *** Assignment 5-1 *** --
 
-replace :: String -> String
-replace []     = []
-replace (x:xs) = if x == 'E' then '_' : replace xs else x : replace xs
+replace1 :: String -> String
+replace1 []     = []
+replace1 (x:xs) = if x == 'E' then '_' : replace1 xs else x : replace1 xs
 
 -- Q#01
 printBoard :: Board -> IO ()
-printBoard brd = putStrLn $ replace $ formatBoard brd
+printBoard brd = putStrLn $ replace1 $ formatBoard brd
 
 t42 :: String
 t42 = "wakka wakka"
