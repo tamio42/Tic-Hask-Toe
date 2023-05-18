@@ -34,9 +34,9 @@ executable TicHaskToe
       , random
       , aeson
       , text
-      , http-conduit
       , bytestring
       , mtl
+      , http-conduit
 
     hs-source-dirs:   solutions
     default-language: Haskell2010

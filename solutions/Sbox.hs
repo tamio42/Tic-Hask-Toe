@@ -1,4 +1,4 @@
--- import Data.Char
+import Data.Char
 import Data.List 
 import System.IO
 import Data.Text (replace)

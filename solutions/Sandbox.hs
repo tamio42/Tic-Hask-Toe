@@ -183,9 +183,6 @@ printElements (x : xs) = do
   putStrLn x
   printElements xs
 
-names :: String
-names = "dfkj \n kjdsfkjas \n jklafsda"
-
 -- getPowers' = nub . concatMap stringList
 
 addOneList' lst = map addOne' lst
